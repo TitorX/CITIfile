@@ -13,7 +13,7 @@ setup(
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     install_requires=[
-        "xarray >= 0.14.1"
+        "xarray>=0.14.1"
     ],
     classifiers=[
         "License :: OSI Approved :: MIT License",

@@ -2,7 +2,7 @@ import numpy as np
 import xarray as xr
 
 
-__version__ = "0.1.3"
+__version__ = "0.1.4"
 __author__ = "Titor"
 __email__ = "titor.sun@gmail.com"
 
@@ -15,14 +15,10 @@ def parse_variable(lines, array):
         def _convert(r, i):
             return np.complex(np.float(r), np.float(i))
 
-    idx = 0
-    while lines:
-        line = lines.pop(0).split(",")
-        if "END" in line[0]:
-            break
+    data = map(lambda line: _convert(*line.split(",")), lines[:array.size])
+    array[:] = np.array(list(data)).reshape(*array.shape)[:]
 
-        array.put(idx, _convert(*line))
-        idx += 1
+    del lines[:array.size+1]
 
 
 def parse_package(lines):
