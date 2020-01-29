@@ -79,7 +79,7 @@ def read_citifile(filename):
     for package in packages:
         name, variables, data = package
         dataset = {d[0]: xr.DataArray(d[1], coords=variables) for d in data}
-        dataset = xr.Dataset(dataset)
-        ds[name] = dataset
+        ds.update(dataset)
 
+    ds = xr.Dataset(ds)
     return ds
