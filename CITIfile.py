@@ -2,7 +2,7 @@ import numpy as np
 import xarray as xr
 
 
-__version__ = "0.1.4"
+__version__ = "0.1.5"
 __author__ = "Titor"
 __email__ = "titor.sun@gmail.com"
 
