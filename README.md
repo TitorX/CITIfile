@@ -20,7 +20,6 @@ pip install -U CITIfile
 ```python
 from CITIfile import read_citifile
 
-
 data = read_citifile("data.citi")
 ```
 
@@ -48,9 +47,9 @@ and `xarray` are designed to handle this kind of data.
 See [xarray documents](http://xarray.pydata.org/en/stable/) to
 learn that how to manipulate `xarray.Dataset` object.
 
-### Displaying Coordinates and Data Vairables
+### Displaying Coordinates and Data Variables
 
-```
+```python
 print('Coordinates:')
 for cname in data.coords:
     cdata = data.coords[cname].data
@@ -68,8 +67,7 @@ This displays the names and types of the corrdinates and data variables, as well
 
 In this example, we extract `S[1,1]` vs. `freq`, at some given coordinates for `C_load` and `C_d2`:
 
-```
-
+```python
 # select the data variable at the given corrdinates
 data_slice = data.data_vars["S[1,1]"].sel(L_load=20, C_d2=1)
 
@@ -85,13 +83,23 @@ for px, py in zip(x, y):
 
 Both `x` and `y` are `numpy.ndarray`.
 
+### File Comments
+
+If any comments are found in the file, they are stored in the `comments` attribute:
+
+```python
+if 'comments' in data.attrs:
+    print(data.attrs['comments'])
+```
+
+
 ## Websites
 
 Main website:
 https://github.com/TitorX/CITIfile
 
 CITIfile Definitions:
-http://literature.cdn.keysight.com/litweb/pdf/ads15/cktsim/ck2016.html
+https://helpfiles.keysight.com/csg/N1930xB/FilePrint/CITIfile_Format.htm
 
 xarray document:
 http://xarray.pydata.org/en/stable/
